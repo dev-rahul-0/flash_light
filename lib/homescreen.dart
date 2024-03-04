@@ -36,8 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 30,
               ),
-              const Text(
-                'FlashLight:OFF',
+                Text(
+                'FlashLight:${(inOn)? "ON" : "OFF"}',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
@@ -46,22 +46,29 @@ class _HomeScreenState extends State<HomeScreen> {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Circlecontain(color: bigbuttoncolor, h: 300, w: 300),
-                  Circlecontain(color: midbuttoncolor, h: 260, w: 260),
+                  Circlecontain(color:(inOn)?Color(0xFF312C27).withOpacity(0.3):bigbuttoncolor, h: 300, w: 300),
+                  Circlecontain(color:(inOn)?Color(0XFFFF8E01).withOpacity(0.4): midbuttoncolor, h: 260, w: 260),
                   SizedBox(
                     width: 190,
                     height: 190,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          if(inOn)
+                            inOn = false;
+                          else
+                            inOn = true;
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100)),
-                        backgroundColor: smallestbuttoncolor,
-                        foregroundColor: const Color(0xFFFF8E01),
+                        backgroundColor: (inOn)? Color(0xFFFF8E01):smallestbuttoncolor,
+                        foregroundColor: (inOn)? Color(0xFF504847):Color(0xFFFF8E01),
                       ),
                       child: const Icon(
                         Icons.power_settings_new,
-                        size: 170,
+                        size: 120,
                       ),
                     ),
                   )
