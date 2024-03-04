@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,14 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
               Icon(
                 (isOn)? Icons.wb_sunny : Icons.wb_sunny_outlined,
                 size: 100,
-                color: (isOn)?Color(0xFFFF8E01): Color(0xFF504847),
+                color: (isOn)?const Color(0xFFFF8E01): const Color(0xFF504847),
               ),
               const SizedBox(
                 height: 30,
               ),
-              const Text(
-                'FlashLight:OFF',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              Text(
+                'FlashLight:${(isOn)?"ON":"OFF"}',
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 30,
@@ -75,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Circlecontain extends StatelessWidget {
-  const Circlecontain({required this.color, required this.h, required this.w});
+  Circlecontain({required this.color, required this.h, required this.w});
 
   final double w;
   final double h;
