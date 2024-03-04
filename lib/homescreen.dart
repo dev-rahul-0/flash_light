@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.wb_sunny_outlined,
+                (inOn)? Icons.wb_sunny : Icons.wb_sunny_outlined,
                 size: 100,
                 color: Color(0xFF504847),
               ),
