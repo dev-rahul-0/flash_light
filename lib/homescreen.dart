@@ -1,4 +1,4 @@
-import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,14 +11,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    Color bigbuttoncolor = Color(0xFF312C27);
-    Color midbuttoncolor = Color(0xFF484242);
-    Color smallestbuttoncolor = Color(0xFF504847);
-    bool inOn = false;
+    Color bigbuttoncolor = const Color(0xFF312C27);
+    Color midbuttoncolor = const Color(0xFF484242);
+    Color smallestbuttoncolor = const Color(0xFF504847);
+    bool isOn = false;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flash App'),
+        title: const Text('Flash App'),
         centerTitle: true,
       ),
       backgroundColor: Colors.black,
@@ -28,18 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                (inOn)? Icons.wb_sunny : Icons.wb_sunny_outlined,
+                (isOn)? Icons.wb_sunny : Icons.wb_sunny_outlined,
                 size: 100,
-                color: Color(0xFF504847),
+                color: (isOn)?Color(0xFFFF8E01): Color(0xFF504847),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 'FlashLight:OFF',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Stack(
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 190,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Icon(
+                      child: const Icon(
                         Icons.power_settings_new,
                         size: 170,
                       ),style: ElevatedButton.styleFrom(
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.circular(100)
                       ),
                       backgroundColor: smallestbuttoncolor!,
-                      foregroundColor: Color(0xFFFF8E01),
+                      foregroundColor: const Color(0xFFFF8E01),
                     ),
                     ),
                   )
