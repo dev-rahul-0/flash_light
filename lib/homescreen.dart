@@ -1,7 +1,4 @@
 
-
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:torch_light/torch_light.dart';
 
@@ -35,19 +32,20 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void initState() {
+    _isTorchAvailable;
     super.initState();
     controller =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
     coloranimationbigbutton = ColorTween(
-            begin: bigbuttoncolor, end: Color(0xFF312C27).withOpacity(0.3))
+        begin: bigbuttoncolor, end: Color(0xFF312C27).withOpacity(0.3))
         .animate(controller!);
 
     coloranimationbigbutton = ColorTween(
-            begin: Color(0xFF484242), end: Color(0xFFFF8E01).withOpacity(0.3))
+        begin: Color(0xFF484242), end: Color(0xFFFF8E01).withOpacity(0.3))
         .animate(controller!);
 
     coloranimationbigbutton = ColorTween(
-            begin: Color(0xFF504847), end: Color(0xFFFF8E01).withOpacity(0.3))
+        begin: Color(0xFF504847), end: Color(0xFFFF8E01).withOpacity(0.3))
         .animate(controller!);
     controller?.addListener(() {
       setState(() {
@@ -57,20 +55,71 @@ class _HomeScreenState extends State<HomeScreen>
       });
     });
 
+  }
 
-    Future<bool> _isTorchAvailable(BuildContext context) async {
+  Future<bool> _isTorchAvailable(BuildContext context) async {
+    try {
+      return await TorchLight.isTorchAvailable();
+    } on Exception catch (e) {
+      print('error');
+      showmessage (
+        'Could not check if the device has an available torch',
+      );
+      rethrow;
+    }
+  }
+
+  Future<void> torchlight() async {
+    if (inOn) {
       try {
-        return await TorchLight.isTorchAvailable();
-      } on Exception catch (e) {
-        print(e);
-        showmessage(
-          'Could not check if the device has an available torch',
-        );
+        return await TorchLight.enableTorch();
+      }
+      on Exception catch (_) {
+        showmessage('Could not enable torch');
         rethrow;
       }
     }
-
+    else {
+      try {
+        return await TorchLight.disableTorch();
+      }on Exception catch(_){
+        showmessage('could not disable tourch');
+        rethrow;
+      }
+    }
   }
+
+
+
+    void showmessage(String message){
+      showDialog(
+          context: context,
+          builder: (BuildContext context){
+            return AlertDialog(
+              actions: [
+                Center(
+                  child: Text(
+                    'AlERT',style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold
+                  ),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    message,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                )
+              ],
+            );
+          }
+      );
+    }
+
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +172,7 @@ class _HomeScreenState extends State<HomeScreen>
                           else
                             inOn = true;
                         });
+                        torchlight();
                         _isColorChanged;
                       },
                       style: ElevatedButton.styleFrom(
@@ -149,34 +199,6 @@ class _HomeScreenState extends State<HomeScreen>
   }
 }
 
-void showmessage(String message){
-  showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          actions: [
-            Center(
-              child: Text(
-                'AlERT',style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold
-              ),
-              ),
-            ),
-            Center(
-              child: Text(
-                message,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            )
-          ],
-        );
-      }
-  );
-}
 
 class Circlecontain extends StatelessWidget {
   const Circlecontain(
