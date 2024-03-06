@@ -1,16 +1,7 @@
 # flash_light
 
-A new Flutter project.
+Flutter app offering customizable torchlight functionality with sleek design and easy-to-use interface
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## screenshot
+![Screenshot_1709742129](https://github.com/dev-rahul-0/flash_light/assets/114253454/95cb8197-afb7-4951-8432-c8ea4227b5f9)
+![Screenshot_1709742134](https://github.com/dev-rahul-0/flash_light/assets/114253454/34237e89-6d6f-4f77-8cdd-4de73e362f99)
